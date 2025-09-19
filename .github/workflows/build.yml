@@ -1,4 +1,4 @@
-name: NodeJS with Webpack
+name: NodeJS with TypeScript
 
 on:
   push:
@@ -22,7 +22,12 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
 
-    - name: Build
-      run: |
-        npm install
-        npm run build
+    - name: Install dependencies
+      run: npm install
+
+    - name: Build with TypeScript
+      run: npm run build
+
+    - name: Run tests
+      run: npm test
+      if: success() && steps.build.outcome == 'success'
