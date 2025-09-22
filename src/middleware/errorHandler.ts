@@ -1,5 +1,6 @@
 import {Response,Request,NextFunction} from "express"
 import pino from "pino"
+import { sendResponse } from "../utils/httpResponseFormat";
 
 const logger = pino()
 
@@ -8,9 +9,6 @@ export function errorHandler(
     req:Request,
     res:Response,
     next:NextFunction){
-        logger.error(err)
-        const status = err?.status || 500;
-        const message = err?.message || "Internal Server Error";
-        res.status(status).json({error:message })
+return sendResponse(res, err.status || 500, err.message || "Internal Server Error");
 
 }
