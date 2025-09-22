@@ -6,11 +6,10 @@ export const config = {
     port :Number(process.env.PORT),
     databaseurl : process.env.DATABASE_URL,
     jwt:{
-        accessSecret:process.env.JWT_ACCESS_SECRET,
-        refreshSecret:process.env.JWT_REFRESH_SECRET,
-        accessExpiry:process.env.ACCESS_TOKEN_EXPIRES_IN,
-        refreshExpiry:process.env.REFRESH_TOKEN_EXPIRES_IN,
+        accessSecret:process.env.JWT_ACCESS_SECRET || "",
+        refreshSecret:process.env.JWT_REFRESH_SECRET || "",
+        accessExpiry:process.env.ACCESS_TOKEN_EXPIRES_IN || "15m",
+        refreshExpiry:process.env.REFRESH_TOKEN_EXPIRES_IN || "15m",
     },
     redisUrl:process.env.REDIS_URL
-
 }
